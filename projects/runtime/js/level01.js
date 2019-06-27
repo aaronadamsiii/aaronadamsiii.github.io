@@ -26,9 +26,27 @@ var level01 = function (window) {
         game.setDebugMode(true);
 
         // BEGIN EDITING YOUR CODE HERE
-
-
-    }
+function createSawBlade(x,y) {
+    var hitZoneSize = 25;
+var damageFromObstacle = 10;
+var myObstacle = game.createObstacle(hitZoneSize,damageFromObstacle);
+myObstacle.x = x;
+myObstacle.y = y;
+game.addGameItem(myObstacle);    
+var obstacleImage = draw.bitmap('img/sawblade.png');
+myObstacle.addChild(obstacleImage);
+obstacleImage.x = -25;
+obstacleImage.y = -25;
+    
+}
+     
+    
+  for (var i=0; i<levelData.gameItems.length; i++) {
+    var gameItem = levelData.gameItems[i];
+    createSawBlade(gameItem.x, gameItem.y)
+}
+}
+    
 };
 
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
@@ -37,3 +55,11 @@ if((typeof process !== 'undefined') &&
     // here, export any references you need for tests //
     module.exports = level01;
 }
+
+var enemy =  game.createGameItem('enemy',25);
+var redSquare = draw.rect(50,50,'red');
+redSquare.x = -25;
+redSquare.y = -25;
+enemy.addChild(redSquare);
+enemy.x = 400;
+enemy.y = groundY-50;
